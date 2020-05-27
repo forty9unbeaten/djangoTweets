@@ -1,0 +1,30 @@
+{% extends '../base.html' %}
+
+{% block stylesheet %}
+    {% load static %}
+    <link href={% static 'register.css' %} rel='stylesheet'>
+{% endblock stylesheet %}
+
+{% block page_title %}
+    {{ page_title }}
+{% endblock page_title %}
+
+{% block navBar %}
+    <a href={% url 'homepage' %}>
+        <div class='navBar__button'>Home</div>
+    </a>
+    <a href={% url 'login' %}>
+        <div class='navBar__button'>Login</div>
+    </a>
+{% endblock navBar %}
+
+{% block content %}
+    <div id='register__container'>
+        <form action='' method='POST'>
+        {{ form.as_p }}
+        <div id='register__button'>
+            <button type='submit'>Sign Up</button>
+        </div>
+        </form>
+    </div>
+{% endblock content %}
