@@ -1,7 +1,15 @@
 from django.shortcuts import render
+from authentication.forms import LoginForm
 
 # Create your views here.
 
 
 def login_view(request):
-    return render(request, 'authentication/login.html')
+    form = LoginForm()
+    return render(
+        request,
+        'authentication/login.html',
+        {
+            'page_title': 'Log In',
+            'form': form
+        })
