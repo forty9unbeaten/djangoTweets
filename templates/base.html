@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static %}
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href={% static 'main.css' %} rel='stylesheet'>
+        <link href={% block stylesheet %}{% endblock %} rel='stylesheet'>
+        <title>{% block page_title %}Django Tweets{% endblock  %}</title>
+    </head>
+    <body>
+        <div id='navBar'>
+            {% block navBar %}
+                <div class='navBar__button'>Home</div>
+                <div class='navBar__button'>Profile</div>
+                <div class='navBar__button'>Notifications</div>
+                <div class='navBar__button'>Logout</div>
+            {% endblock  %}
+        </div>
+        <div id='content'>
+            {% block content %}
+            Content goes here...
+            {% endblock %}
+        </div>
+          </body>
+</html>
