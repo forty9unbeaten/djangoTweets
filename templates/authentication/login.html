@@ -1,9 +1,32 @@
 {% extends '../base.html' %}
 
+{% block stylesheet %}
+    {% load static %}
+    <link href={% static 'login.css' %} rel='stylesheet'>
+{% endblock stylesheet %}
+
+{% block page_title %}
+    {{ page_title }}
+{% endblock page_title %}
+
 {% block navBar %}
+    <a href={% url 'homepage' %}>
     <div class='navBar__button'>Home</div>
+    </a>
+    <a href={% url 'register' %}>
+    <div class='navBar__button'>Sign Up!</div>
+    </a>
 {% endblock navBar %}
 
 {% block content %}
-Login Form here
+<div id='login__container'>
+    Enter your username and password below
+    <form action='' method='POST'>
+        {{ form.as_p }}
+        <button type='submit'>Log In</button>
+    </form>
+    <div id='login__register'>
+    New User? <a href={% url 'register' %}>Sign Up Here</a>
+    </div>
+</div>
 {% endblock content %}
