@@ -9,9 +9,11 @@
                 @{{tweet.composer.username}}
             </i>
             </div>
-            <div class='userDetail__tweetContent'>
-                {{ tweet.content }}
-            </div>
+            <a href={% url 'single_tweet' tweet.id %}>
+                <div class='userDetail__tweetContent'>
+                    {{ tweet.content }}
+                </div>
+            </a>
             <div class='userDetail__tweetDate'>
                 {{ tweet.create_date }}
             </div>
