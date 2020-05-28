@@ -9,7 +9,7 @@
 
 #register__container form {
     padding: 50px;
-    border: 1px solid black;
+    border: 2px solid var(--grey);
     border-radius: 10px;
 }
 #register__container form p {
@@ -32,6 +32,9 @@
     padding: 5px;
     margin-top: 5px;
     border-radius: 5px;
+    border: 5px solid var(--scarlet);
+    background-color: white;
+    color: var(--scarlet);
 }
 
 #register__login {
@@ -39,7 +42,7 @@
 }
 
 #register__login a {
-    color: black;
+    color: var(--scarlet);
 }
 
 #register__container form #register__error {
