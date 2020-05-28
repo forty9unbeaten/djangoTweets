@@ -6,5 +6,5 @@ from django.contrib.auth.models import AbstractUser
 
 class TwitterUser(AbstractUser):
     display_name = models.CharField(max_length=50)
-    bio = models.CharField(max_length=140)
+    bio = models.CharField(max_length=140, blank=True)
     following = models.ManyToManyField(to='self', symmetrical=False)
