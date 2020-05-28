@@ -17,17 +17,27 @@
     margin: 10px 0 10px 0;
 }
 
+#login__container form p input {
+    width: 100%;
+    padding: 5px;
+}
+
 #login__container p {
-    padding-bottom: 5px;
+    padding: 5px;
 }
 
 #login__container button {
     padding: 5px;
     margin-top: 5px;
-    width: 100%;
+    width: 80%;
     border-radius: 5px;
 }
 
 #login__register a {
     color: black;
+}
+
+#login__error {
+    color: red;
+    margin-top: 5px;
 }
