@@ -22,8 +22,16 @@
 <div id='login__container'>
     Enter your username and password below
     <form action='' method='POST'>
+        {% csrf_token %}
         {{ form.as_p }}
         <button type='submit'>Log In</button>
+
+        {% if error %}
+            <div id='login__error'>
+                {{ error }}
+            </div>
+        {% endif %}
+
     </form>
     <div id='login__register'>
     New User? <a href={% url 'register' %}>Sign Up Here</a>
