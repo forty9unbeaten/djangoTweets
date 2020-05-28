@@ -6,20 +6,32 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link href={% static 'main.css' %} rel='stylesheet'>
         {% block stylesheet %}{% endblock stylesheet %}
-        <title>{% block page_title %}Django Tweets{% endblock  %}</title>
+        <title>{% block page_title %}Django Tweets: Home{% endblock  %}</title>
     </head>
     <body>
         <div id='navBar'>
             {% block navBar %}
-                <div class='navBar__button'>Home</div>
-                <div class='navBar__button'>Profile</div>
+                <div class='navBar__button'>
+                    <a href={% url 'homepage' %}>
+                    Home
+                    </a>
+                </div>
+                <div class='navBar__button'>
+                    <a href={% url 'user_detail' user.username %}>
+                        Profile
+                    </a>
+                </div>
                 <div class='navBar__button'>Notifications</div>
-                <div class='navBar__button'>Logout</div>
+                <div class='navBar__button'>
+                    <a href={% url 'logout' %}>
+                        Logout
+                    </a>
+                </div>
             {% endblock  %}
         </div>
         <div id='content'>
             {% block content %}
-            Content goes here...
+            Custom content provided by templates that inherit this base template
             {% endblock %}
         </div>
           </body>
