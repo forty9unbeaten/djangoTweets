@@ -10,12 +10,16 @@
 {% endblock page_title %}
 
 {% block navBar %}
-    <a href={% url 'homepage' %}>
-        <div class='navBar__button'>Home</div>
-    </a>
-    <a href={% url 'login' %}>
-        <div class='navBar__button'>Log In</div>
-    </a>
+    <div class='navBar__button'>
+        <a href={% url 'homepage' %}>
+            <ion-icon name="home"></ion-icon>
+        </a>
+    </div>
+    <div class='navBar__button'>
+        <a href={% url 'login' %}>
+           <ion-icon name="log-in"></ion-icon>
+        </a>
+    </div>
 {% endblock navBar %}
 
 {% block content %}
