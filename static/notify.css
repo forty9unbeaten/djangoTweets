@@ -1,0 +1,69 @@
+#notify__page {
+    width: 100%;
+    height: 100%;
+    background-color: var(--grey);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: scroll;
+    padding: 10px;
+}
+
+.notify__tweetContainer {
+    width: 70%;
+    height: 40%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 7px black;
+    display: flex;
+    margin: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 10px;
+}
+
+.notify__tweetContainer.empty {
+    margin-top: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--scarlet);
+    font-size: 45px;
+}
+
+.notify__tweetName {
+    width: 100%;
+    height: 30%;
+    padding: 10px;
+    border-bottom: 5px solid var(--scarlet);
+}
+
+.notify__tweetName strong {
+    font-size: 30px;
+}
+
+.notify__tweetName a {
+    color: black;
+    text-decoration: none;
+}
+
+.notify__tweetName i {
+    color: var(--grey);
+    font-size: 20px;
+}
+
+.notify__tweetContent {
+    padding: 10px;
+    width: 100%;
+    font-size: 20px;
+    height: 55%;
+    border-bottom: 1px solid var(--grey);
+}
+
+.notify__tweetDate {
+    height: 15%;
+    width: 100%;
+    padding: 10px;
+    color: var(--scarlet);
+}
