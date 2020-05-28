@@ -1,0 +1,43 @@
+{% extends '../base.html' %}
+
+{% block stylesheet %}
+    {% load static %}
+    <link href={% static 'notify.css' %} rel='stylesheet'>
+{% endblock stylesheet %}
+
+{% block page_title %}
+    Notifications
+{% endblock page_title %}
+
+{% block content %}
+    <div id='notify__page'>
+        {% if tweets %}
+            {% for tweet in tweets %}
+                <div class='notify__tweetContainer'>
+                    <div class='notify__tweetName'>
+                    <a href={% url 'user_detail' tweet.composer.username %}>
+                        <strong>
+                                {{tweet.composer.display_name}}
+                        </strong>
+                    </a>
+                    <i>
+                        @{{tweet.composer.username}}
+                    </i>
+                    </div>
+                    <div class='notify__tweetContent'>
+                        {{ tweet.content }}
+                    </div>
+                    <div class='notify__tweetDate'>
+                        {{ tweet.create_date }}
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class='notify__tweetContainer empty'>
+                <strong>
+                    No New Notifications...
+                </strong>
+            </div>
+        {% endif %}
+    </div>
+{% endblock content %}
