@@ -9,7 +9,11 @@
     {% if not is_auth %}
         {% include '../login_navbar.html' %}
     {% else %}
-        {% include '../std_navbar.html' %}
+        {% if new_notifications %}
+            {% include '../new_notify_navbar.html' %}
+        {% else %}
+            {% include '../std_navbar.html' %}
+        {% endif %}
     {% endif %}
 {% endblock navBar %}
 

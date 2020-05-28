@@ -5,6 +5,14 @@
     <link href={% static 'homepage.css' %} rel='stylesheet'>
 {% endblock stylesheet %}
 
+{% block navBar %}
+    {% if new_notifications %}
+        {% include '../new_notify_navbar.html' %}
+    {% else %}
+        {% include '../std_navbar.html' %}
+    {% endif %}
+{% endblock navBar %}
+    
 {% block content %}
     <div id='homepage__container'>
         {% include './homepage_sidebar.html' %}
