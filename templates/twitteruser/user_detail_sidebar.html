@@ -1,0 +1,32 @@
+<div id='userDetail__sidebar'>
+    <div id='userDetail__displayName'>
+        {{ user.display_name }}
+    </div>
+    <div id='userDetail__username'>
+        @{{ user.username }}
+    </div>
+    <div id='userDetail__bio'>
+        {{user.bio}}
+    </div>
+    <div id='userDetail__infoContainer'>
+        <div id='userDetail__following'>
+            <strong>Following: </strong> {{ user.following.count }}
+        </div>
+        <div id='userDetail__totalTweets'>
+            <strong>Tweets: </strong> {{ tweets.count }}
+        </div>
+        {% if not is_user %}
+            {% if not is_following %}
+            <form action='./follow' method='POST'>
+                {% csrf_token %}
+                <button type='submit'>Follow</button>
+            </form>
+            {% else %}
+                <form action='./unfollow' method='POST'>
+                    {% csrf_token %}
+                    <button type='submit'>Unfollow</button>
+                </form>
+            {% endif %}
+        {% endif %}
+    </div>
+</div>
