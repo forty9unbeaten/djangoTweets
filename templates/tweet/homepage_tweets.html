@@ -1,0 +1,19 @@
+<div id='homepage__mainContainer'>
+    {% for tweet in tweets %}
+        <div class='homepage__tweetContainer'>
+            <div class='homepage__tweetName'>
+            <strong>
+                <a href={% url 'user_detail' tweet.composer.username %}>
+                    {{tweet.composer.display_name}}
+                    </a>
+            </strong>
+            <i>
+                @{{tweet.composer.username}}
+            </i>
+            </div>
+            <div class='homepage__tweetContent'>
+                {{ tweet.content }}
+            </div>
+        </div>
+    {% endfor %}
+</div>

@@ -1,0 +1,13 @@
+<div id='homepage__sidebarContainer'>
+    <div id='homepage__sidebar'>
+        <form action='./newtweet/' method='POST'>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div id='homepage__tweetButton'>
+                <button type='submit'>
+                        <ion-icon name="send"></ion-icon>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

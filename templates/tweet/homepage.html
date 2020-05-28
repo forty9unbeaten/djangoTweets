@@ -7,15 +7,7 @@
 
 {% block content %}
     <div id='homepage__container'>
-        <div id='homepage__sidebar'>
-            <form>
-                {% csrf_token %}
-                {{ form.as_p }}
-                <div id='homepage__tweetButton'>
-                    <button type='submit'>Tweet</button>
-                </div>
-            </form>
-        </div>
-        <div id='homepage__mainContainer'></div>
+        {% include './homepage_sidebar.html' %}
+        {% include './homepage_tweets.html' %}
     </div>
 {% endblock content %}
