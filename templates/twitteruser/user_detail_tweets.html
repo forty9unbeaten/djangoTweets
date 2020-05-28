@@ -1,0 +1,20 @@
+<div id='userDetail__mainContainer'>
+    {% for tweet in tweets %}
+        <div class='userDetail__tweetContainer'>
+            <div class='userDetail__tweetName'>
+            <strong>
+                    {{tweet.composer.display_name}}
+            </strong>
+            <i>
+                @{{tweet.composer.username}}
+            </i>
+            </div>
+            <div class='userDetail__tweetContent'>
+                {{ tweet.content }}
+            </div>
+            <div class='userDetail__tweetDate'>
+                {{ tweet.create_date }}
+            </div>
+        </div>
+    {% endfor %}
+</div>
