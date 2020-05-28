@@ -1,0 +1,56 @@
+#tweet__page {
+    height: 100%;
+    width: 100%;
+    background-color: var(--grey);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#tweet__container {
+    height: 50%;
+    width: 70%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 7px black;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 10px;
+}
+
+#tweet__user {
+    width: 100%;
+    height: 30%;
+    padding: 10px;
+    border-bottom: 5px solid var(--scarlet);
+}
+
+#tweet__user strong {
+    font-size: 35px;
+}
+
+#tweet__user a {
+    color: black;
+    text-decoration: none;
+}
+
+#tweet__user i {
+    font-size: 20px;
+    color: var(--grey);
+}
+
+#tweet__content {
+    padding: 10px;
+    width: 100%;
+    font-size: 20px;
+    height: 55%;
+    border-bottom: 1px solid var(--grey);
+}
+
+#tweet__date {
+    height: 15%;
+    width: 100%;
+    padding: 10px;
+}
