@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from twitteruser.forms import RegisterForm
 from twitteruser.models import TwitterUser
 from tweet.models import Tweet
+from tweet.utils import get_new_notifications
 
 # Create your views here.
 
@@ -69,8 +70,13 @@ def user_detail_view(request, username):
             is_following = False
         else:
             is_following = True
+        if get_new_notifications(request.user):
+            new_notifications = True
+        else:
+            new_notifications = False
     else:
         is_following = False
+        new_notifications = False
 
     return render(
         request,
@@ -78,6 +84,8 @@ def user_detail_view(request, username):
         {
             'user': user,
             'tweets': tweets,
+            'follow_count': user.following.count() - 1,
+            'new_notifications': new_notifications,
             'is_user': is_user,
             'is_following': is_following,
             'is_auth': request.user.is_authenticated
