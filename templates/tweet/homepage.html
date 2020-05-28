@@ -1,0 +1,21 @@
+{% extends '../base.html' %}
+
+{% block stylesheet %}
+    {% load static %}
+    <link href={% static 'homepage.css' %} rel='stylesheet'>
+{% endblock stylesheet %}
+
+{% block content %}
+    <div id='homepage__container'>
+        <div id='homepage__sidebar'>
+            <form>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div id='homepage__tweetButton'>
+                    <button type='submit'>Tweet</button>
+                </div>
+            </form>
+        </div>
+        <div id='homepage__mainContainer'></div>
+    </div>
+{% endblock content %}
