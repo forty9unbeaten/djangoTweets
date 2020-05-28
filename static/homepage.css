@@ -1,0 +1,52 @@
+#homepage__container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#homepage__sidebar {
+    height: 33%;
+    width: 29%;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#homepage__sidebar form {
+    width: 100%;
+    height: 100%;
+}
+
+#homepage__sidebar form textarea {
+    width: 100%;
+    resize: none;
+    border: none;
+}
+
+#homepage__sidebar form textarea:focus {
+    outline-width: 0px;
+}
+
+#homepage__tweetButton {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#homepage__tweetButton button {
+    width: 40%;
+    border-radius: 5px;
+    padding: 5px 0 5px 0;
+}
+
+#homepage__mainContainer {
+    width: 68%;
+    height: 100%;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    border-radius: 10px;
+}
