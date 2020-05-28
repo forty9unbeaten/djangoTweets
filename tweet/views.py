@@ -44,3 +44,16 @@ def new_tweet_view(request):
             return HttpResponseRedirect(
                 reverse('homepage')
             )
+
+
+def tweet_view(request, tweetId):
+    tweet = Tweet.objects.get(id=tweetId)
+
+    return render(
+        request,
+        'tweet/tweet_detail.html',
+        {
+            'tweet': tweet,
+            'is_auth': request.user.is_authenticated
+        }
+    )
