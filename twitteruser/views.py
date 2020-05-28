@@ -1,8 +1,10 @@
 from django.shortcuts import render, reverse
 from django.contrib.auth import login
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 from twitteruser.forms import RegisterForm
 from twitteruser.models import TwitterUser
+from tweet.models import Tweet
 
 # Create your views here.
 
@@ -24,6 +26,7 @@ def register_view(request):
                     display_name=data['display_name']
                 )
                 new_user.save()
+                new_user.following.add(new_user)
                 login(request, new_user)
                 return HttpResponseRedirect(
                     reverse('homepage')
@@ -54,4 +57,58 @@ def register_view(request):
 
 def user_detail_view(request, username):
     user = TwitterUser.objects.get(username=username)
-    return render(request, 'twitteruser/user_detail.html')
+    tweets = Tweet.objects.filter(composer=user)
+
+    if user == request.user:
+        is_user = True
+    else:
+        is_user = False
+
+    if request.user.is_authenticated:
+        if not is_user and user not in request.user.following.get_queryset():
+            is_following = False
+        else:
+            is_following = True
+    else:
+        is_following = False
+
+    return render(
+        request,
+        'twitteruser/user_detail.html',
+        {
+            'user': user,
+            'tweets': tweets,
+            'is_user': is_user,
+            'is_following': is_following,
+            'is_auth': request.user.is_authenticated
+        })
+
+
+@login_required
+def unfollow_view(request, username):
+    current_user = request.user
+    unfollowed_user = TwitterUser.objects.get(username=username)
+    current_user.following.remove(unfollowed_user)
+    return HttpResponseRedirect(
+        reverse(
+            'user_detail',
+            kwargs={
+                'username': username
+            }
+        )
+    )
+
+
+@login_required
+def follow_view(request, username):
+    current_user = request.user
+    followed_user = TwitterUser.objects.get(username=username)
+    current_user.following.add(followed_user)
+    return HttpResponseRedirect(
+        reverse(
+            'user_detail',
+            kwargs={
+                'username': username
+            }
+        )
+    )
