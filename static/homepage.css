@@ -5,17 +5,29 @@
     justify-content: space-between;
 }
 
+#homepage__sidebarContainer {
+    height: 100%;
+    width: 30%;
+    background-color: var(--scarlet);
+    padding: 0 20px 0 20px;
+}
+
 #homepage__sidebar {
-    height: 33%;
-    width: 29%;
-    border: 1px solid black;
+    height: 50%;
+    width: 100%;
+    box-shadow: 0 2px 5px var(--grey);
+    background-color: white;
     border-radius: 10px;
-    padding: 10px;
+    padding: 0 10px 0 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
 }
 
 #homepage__sidebar form {
     width: 100%;
-    height: 100%;
+    height: 85%;
 }
 
 #homepage__sidebar form textarea {
@@ -30,6 +42,7 @@
 
 #homepage__tweetButton {
     width: 100%;
+    height: 15%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -37,16 +50,55 @@
 
 #homepage__tweetButton button {
     width: 40%;
+    border: 5px solid var(--scarlet);
     border-radius: 5px;
+    background-color: white;
     padding: 5px 0 5px 0;
+    color: var(--grey);
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #homepage__mainContainer {
-    width: 68%;
+    width: 70%;
     height: 100%;
     overflow: scroll;
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
+    align-items: center;
+    background-color: var(--grey);
+}
+
+.homepage__tweetContainer {
+    width: 80%;
+    height: 20%;
+    margin-top: 10px;
+    padding: 10px;
     border-radius: 10px;
+    background-color: white;
+}
+
+.homepage__tweetName {
+    width: 100%;
+    border-bottom: 2px solid var(--scarlet);
+    padding: 0 0 5px 5px;
+    height: 25%;
+}
+
+.homepage__tweetName a {
+    color: black;
+    text-decoration: none;
+}
+
+.homepage__tweetName i {
+    color: var(--grey);
+}
+
+.homepage__tweetContent {
+    display: flex;
+    align-items: center;
+    height: 75%;
+    padding-left: 5px;
 }
