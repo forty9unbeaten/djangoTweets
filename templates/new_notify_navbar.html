@@ -1,0 +1,20 @@
+<div class='navBar__button'>
+    <a href={% url 'homepage' %}>
+        <ion-icon name="home"></ion-icon>
+    </a>
+</div>
+<div class='navBar__button'>
+    <a href={% url 'user_detail' user.username %}>
+        <ion-icon name="person"></ion-icon>
+    </a>
+</div>
+<div class='navBar__button new'>
+    <a href={% url 'notifications' %}>
+        <ion-icon name="alert"></ion-icon>
+    </a>
+</div>
+<div class='navBar__button'>
+    <a href={% url 'logout' %}>
+        <ion-icon name="log-out"></ion-icon>
+    </a>
+</div>
