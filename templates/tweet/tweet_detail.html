@@ -1,0 +1,33 @@
+{% extends '../base.html' %}
+
+{% block stylesheet %}
+    {% load static %}
+    <link href={% static 'tweet_detail.css' %} rel='stylesheet'>
+{% endblock stylesheet %}
+
+{% block navBar %}
+    {% if not is_auth %}
+        {% include '../login_navbar.html' %}
+    {% else %}
+        {% include '../std_navbar.html' %}
+    {% endif %}
+{% endblock navBar %}
+
+{% block content %}
+    <div id='tweet__page'>
+        <div id='tweet__container'>
+            <div id='tweet__user'>
+                <a href={% url 'user_detail' tweet.composer.username %}>
+                <strong>{{ tweet.composer.display_name }}</strong>
+                </a>
+                <i>@{{tweet.composer.username}}</i>
+            </div>
+            <div id='tweet__content'>
+            {{ tweet.content }}
+            </div>
+            <div id='tweet__date'>
+                {{ tweet.create_date }}
+            </div>
+        </div>
+    </div>
+{% endblock content %}
