@@ -2,9 +2,25 @@
 
 {% block stylesheet %}
     {% load static %}
-    <link href={% static 'user_detail.css' %} ref='stylesheet'>
+    <link href={% static 'user_detail.css' %} rel='stylesheet'>
 {% endblock stylesheet %}
 
+{% block page_title %}
+    {{ user.display_name }}
+{% endblock page_title %}
+
+{% block navBar %}
+    {% if not is_auth %}
+        {% include '../login_navbar.html' %}
+    {% else %}
+        {% include '../std_navbar.html' %}
+    {% endif %}
+{% endblock navBar %}
+
+
 {% block content %}
-    User Page
+    <div id='userDetail__page'>
+        {% include './user_detail_sidebar.html' %}
+        {% include './user_detail_tweets.html' %}
+    </div>
 {% endblock content %}
