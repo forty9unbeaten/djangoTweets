@@ -6,16 +6,20 @@
 {% endblock stylesheet %}
 
 {% block page_title %}
-    {{ page_title }}
+    Login
 {% endblock page_title %}
 
 {% block navBar %}
-    <a href={% url 'homepage' %}>
-    <div class='navBar__button'>Home</div>
-    </a>
-    <a href={% url 'register' %}>
-    <div class='navBar__button'>Sign Up!</div>
-    </a>
+    <div class='navBar__button'>
+        <a href={% url 'homepage' %}>
+            <ion-icon name="home"></ion-icon>
+        </a>
+    </div>
+    <div class='navBar__button'>
+        <a href={% url 'register' %}>
+            <ion-icon name="person-add"></ion-icon>
+        </a>
+    </div>
 {% endblock navBar %}
 
 {% block content %}
