@@ -14,17 +14,24 @@
         <div class='navBar__button'>Home</div>
     </a>
     <a href={% url 'login' %}>
-        <div class='navBar__button'>Login</div>
+        <div class='navBar__button'>Log In</div>
     </a>
 {% endblock navBar %}
 
 {% block content %}
     <div id='register__container'>
         <form action='' method='POST'>
-        {{ form.as_p }}
-        <div id='register__button'>
-            <button type='submit'>Sign Up</button>
-        </div>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div id='register__button'>
+                <button type='submit'>Sign Up</button>
+            </div>
+            <div id='register__error'>
+                {{ error }}
+            </div>
         </form>
+        <div id='register__login'>
+            Already have an account? <a href={% url 'login' %}>Log In Here</a>
+        </div>
     </div>
 {% endblock content %}
