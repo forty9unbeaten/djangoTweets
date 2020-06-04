@@ -73,40 +73,57 @@ class RegisterUser(View):
             )
 
 
-def user_detail_view(request, username):
-    user = TwitterUser.objects.get(username=username)
-    tweets = Tweet.objects.filter(composer=user)
+class UserDetail(View):
 
-    if user == request.user:
-        is_user = True
-    else:
-        is_user = False
+    html_template = 'twitteruser/user_detail.html'
 
-    if request.user.is_authenticated:
-        if not is_user and user not in request.user.following.get_queryset():
+    def get(self, request, username):
+        # retrieve user information and user's
+        # tweets from database
+        user = TwitterUser.objects.get(username=username)
+        tweets = Tweet.objects.filter(composer=user)
+
+        # determine if the current user is
+        # accessing their own page
+        if user == request.user:
+            is_user = True
+        else:
+            is_user = False
+
+        # determine if the user accessing the
+        # page is authenticated and if they
+        # are following the person whose page
+        # they have acccessed
+        if request.user.is_authenticated:
+            if not is_user and user not in request.user.following.get_queryset():
+                is_following = False
+            else:
+                is_following = True
+
+            # check for any new notifications before page is rendered
+            if get_new_notifications(request.user):
+                new_notifications = True
+            else:
+                new_notifications = False
+        else:
+            # user not authenticated
+            # can't follow anyone and
+            # can't have new notifications
             is_following = False
-        else:
-            is_following = True
-        if get_new_notifications(request.user):
-            new_notifications = True
-        else:
             new_notifications = False
-    else:
-        is_following = False
-        new_notifications = False
 
-    return render(
-        request,
-        'twitteruser/user_detail.html',
-        {
-            'user': user,
-            'tweets': tweets,
-            'follow_count': user.following.count() - 1,
-            'new_notifications': new_notifications,
-            'is_user': is_user,
-            'is_following': is_following,
-            'is_auth': request.user.is_authenticated
-        })
+        return render(
+            request,
+            self.html_template,
+            {
+                'user': user,
+                'tweets': tweets,
+                'follow_count': user.following.count() - 1,
+                'new_notifications': new_notifications,
+                'is_user': is_user,
+                'is_following': is_following,
+                'is_auth': request.user.is_authenticated
+            })
 
 
 @login_required
