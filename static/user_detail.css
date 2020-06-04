@@ -76,7 +76,7 @@
 
 .userDetail__tweetContainer a {
     color: black;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 .userDetail__tweetName {
