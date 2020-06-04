@@ -1,6 +1,8 @@
 from django.shortcuts import render, reverse
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
+from django.views.generic.base import View
+from django.contrib.auth.mixins import LoginRequiredMixin
 from tweet.forms import NewTweetForm
 from tweet.models import Tweet
 from tweet.utils import find_mention_notifications, get_new_notifications
@@ -10,34 +12,35 @@ from notification.models import Notification
 
 # Create your views here.
 
+class HomepageView(LoginRequiredMixin, View):
 
-@login_required
-def homepage_view(request):
-    form = NewTweetForm()
+    def get(self, request):
+        form = NewTweetForm()
+        # parse ids from list of people user is following
+        # and create list of those ids
+        follow_set = request.user.following.get_queryset()
+        following = []
+        for user in follow_set:
+            following.append(user.id)
 
-    # parse ids from list of people user is following
-    follow_set = request.user.following.get_queryset()
-    following = []
-    for user in follow_set:
-        following.append(user.id)
-    # filter tweets based on ids of people user is following
-    tweets = Tweet.objects.filter(
-        composer__id__in=following).order_by('-create_date')
+        # filter tweets based on ids of people user is following
+        tweets = Tweet.objects.filter(
+            composer__id__in=following).order_by('-create_date')
 
-    if get_new_notifications(request.user):
-        new_notifications = True
-    else:
-        new_notifications = False
+        if get_new_notifications(request.user):
+            new_notifications = True
+        else:
+            new_notifications = False
 
-    return render(
-        request,
-        'tweet/homepage.html',
-        {
-            'user': request.user,
-            'form': form,
-            'tweets': tweets,
-            'new_notifications': new_notifications
-        })
+        return render(
+            request,
+            'tweet/homepage.html',
+            {
+                'user': request.user,
+                'form': form,
+                'tweets': tweets,
+                'new_notifications': new_notifications
+            })
 
 
 @login_required
