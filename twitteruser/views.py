@@ -2,6 +2,8 @@ from django.shortcuts import render, reverse
 from django.contrib.auth import login
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.views.generic.base import View
+from django.contrib.auth.mixins import LoginRequiredMixin
 from twitteruser.forms import RegisterForm
 from twitteruser.models import TwitterUser
 from tweet.models import Tweet
@@ -10,11 +12,23 @@ from tweet.utils import get_new_notifications
 # Create your views here.
 
 
-def register_view(request):
-    # POST request handling
-    if request.method == 'POST':
-        form = RegisterForm(request.POST)
+class RegisterUser(View):
 
+    html_template = 'twitteruser/register.html'
+
+    def get(self, request):
+        form = RegisterForm()
+        return render(
+            request,
+            self.html_template,
+            {
+                'page_title': 'Registration',
+                'form': form
+            }
+        )
+
+    def post(self, request):
+        form = RegisterForm(request.POST)
         # confirm form validity
         if form.is_valid():
             data = form.cleaned_data
@@ -33,27 +47,30 @@ def register_view(request):
                     reverse('homepage')
                 )
             else:
+
                 # password and confirm password entries do not match
                 form = RegisterForm()
                 return render(
                     request,
-                    'twitteruser/register.html',
+                    self.html_template,
                     {
                         'page_title': 'Registration',
                         'form': form,
                         'error': 'Password entries did not match'
                     }
                 )
-
-    # GET request handling
-    form = RegisterForm()
-    return render(
-        request,
-        'twitteruser/register.html',
-        {
-            'page_title': 'Registration',
-            'form': form
-        })
+        else:
+            # problem with form validity
+            return render(
+                request,
+                self.html_template,
+                {
+                    'page_title': 'Registration',
+                    'form': form,
+                    'error': 'There was a problem ' +
+                    'registering your new account. Please try again'
+                }
+            )
 
 
 def user_detail_view(request, username):
